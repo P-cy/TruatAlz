@@ -20,8 +20,20 @@ class _ChatDoctorScreenState extends State<ChatDoctorScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Color(0xFFF5F7FA),
         appBar: AppBar(
-          title: const Text('ปรึกษาแพทย์'),
+          elevation: 0,
+          backgroundColor: Colors.transparent,
+          title: Text(
+            "ปรึกษาแพทย์",
+            style: TextStyle(
+              color: Color(0xFF2C3E50),
+              fontWeight: FontWeight.bold,
+              fontSize: 22,
+            ),
+          ),
+          centerTitle: true,
+          automaticallyImplyLeading: false,
         ),
         body: Column(children: [
           Expanded(

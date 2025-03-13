@@ -36,6 +36,17 @@ dependencies:
   cupertino_icons: ^1.0.8
   table_calendar: ^3.2.0
   shared_preferences: ^2.2.2
+  percent_indicator: ^4.2.4
+  url_launcher: ^6.1.14
+  flutter_launcher_icons: ^0.14.2
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/img/logo_foreground.png"
+  adaptive_icon_foreground: "assets/img/logo_foreground.png"
+  adaptive_icon_background: "#ffffff"
+
 
 dev_dependencies:
   flutter_test:
@@ -60,8 +71,9 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
+  assets:
+     - assets/
+     - assets/img/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

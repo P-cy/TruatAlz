@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:truat_alz/pages/calendar.dart';
+import 'package:truat_alz/pages/chat_doctor_page.dart';
 import 'package:truat_alz/pages/home_page.dart';
+import 'package:truat_alz/pages/profile_page.dart';
 
 class FirstScreen extends StatefulWidget {
   const FirstScreen({super.key});
@@ -13,64 +15,86 @@ class _FirstScreenState extends State<FirstScreen> {
   final List<Widget> _pages = [
     const DailyQuizScreen(),
     const HomeScreen(),
-    const Center(child: Text("Chat Page")),
+    const ChatDoctorScreen(),
+    const ProfileScreen(),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: _pages[_currentIndex],
-      floatingActionButton: SizedBox(
-        width: 70,
-        height: 70,
-        child: FloatingActionButton(
-          backgroundColor: const Color(0xFF3ED598),
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(40)),
-          ),
-          onPressed: () {
-            setState(() {
-              _currentIndex = 1;
-            });
-          },
-          child: const Icon(
-            Icons.home_filled,
-            size: 45,
-            color: Colors.white,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.05),
+              spreadRadius: 1,
+              blurRadius: 10,
+              offset: Offset(0, -5),
+            ),
+          ],
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(20),
+            topRight: Radius.circular(20),
           ),
         ),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: BottomAppBar(
-        shape: const CircularNotchedRectangle(),
-        color: const Color(0xFF2C3E50),
-        height: 55,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            IconButton(
-              onPressed: () {
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              _buildNavItem(Icons.home, "หน้าหลัก", _currentIndex == 1, () {
+                setState(() {
+                  _currentIndex = 1;
+                });
+              }),
+              _buildNavItem(Icons.assessment, "แบบทดสอบ", _currentIndex == 0,
+                  () {
                 setState(() {
                   _currentIndex = 0;
                 });
-              },
-              icon: const Icon(Icons.calendar_month_rounded),
-              color: _currentIndex == 0 ? const Color(0xFF3ED598) : Colors.grey,
-              iconSize: 30,
-            ),
-            const SizedBox(width: 20),
-            IconButton(
-              onPressed: () {
+              }),
+              _buildNavItem(Icons.article, "บทความ", _currentIndex == 2, () {
                 setState(() {
                   _currentIndex = 2;
                 });
-              },
-              icon: const Icon(Icons.chat_rounded),
-              color: _currentIndex == 2 ? const Color(0xFF3ED598) : Colors.grey,
-              iconSize: 30,
-            ),
-          ],
+              }),
+              _buildNavItem(Icons.person, "โปรไฟล์", _currentIndex == 3, () {
+                setState(() {
+                  _currentIndex = 3;
+                });
+              }),
+            ],
+          ),
         ),
+      ),
+    );
+  }
+
+  Widget _buildNavItem(
+      IconData icon, String label, bool isActive, VoidCallback onTap) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(
+            icon,
+            color: isActive ? Color(0xFF3498DB) : Color(0xFF95A5A6),
+            size: 24,
+          ),
+          SizedBox(height: 4),
+          Text(
+            label,
+            style: TextStyle(
+              color: isActive ? Color(0xFF3498DB) : Color(0xFF95A5A6),
+              fontSize: 12,
+              fontWeight: isActive ? FontWeight.bold : FontWeight.normal,
+            ),
+          ),
+        ],
       ),
     );
   }

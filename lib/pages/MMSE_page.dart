@@ -10,73 +10,257 @@ class MMSEScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFFF5F7FA),
       appBar: AppBar(
-        backgroundColor: const Color(0xFF30444E),
+        elevation: 0,
+        backgroundColor: Colors.transparent,
         title: Text(
-          'MMSE-Thai 2002',
+          "MMSE-Thai 2002",
           style: TextStyle(
-            fontSize: 30,
-            fontWeight: FontWeight.w500,
-            color: Colors.white,
+            color: Color(0xFF2C3E50),
+            fontWeight: FontWeight.bold,
+            fontSize: 22,
           ),
         ),
         centerTitle: true,
         automaticallyImplyLeading: true,
-        leading: IconButton(
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const FirstScreen()),
-            );
-          },
-          icon: Icon(
-            Icons.arrow_back,
-            color: Colors.white,
-            size: 24,
+        leading: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: IconButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const FirstScreen()),
+              );
+            },
+            icon: Icon(
+              Icons.arrow_back_ios,
+              color: Color(0xFF2C3E50),
+              size: 30,
+            ),
+          ),
+        ),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(20),
+            bottomRight: Radius.circular(20),
           ),
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
-        child: Column(
-          children: [
-            const Text(
-              'แบบทดสอบสภาพสมองเบื้องต้น \nMMSE-Thai 2002',
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 15),
-            const Text(
-              'แบบทดสอบนี้ใช้เพื่อประเมิน\nความสามารถของสมองเบื้องต้น',
-              style: TextStyle(fontSize: 16),
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 15),
-            const Text(
-              'โปรดตอบคำถามตามที่ปรากฏบนหน้าจอให้ครบทุกข้อ',
-              style: TextStyle(fontSize: 16),
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 40),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const EducationLevelScreen(),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+          child: Column(
+            children: [
+              // หัวข้อหลัก
+              Container(
+                padding: EdgeInsets.symmetric(vertical: 12, horizontal: 20),
+                decoration: BoxDecoration(
+                  color: Color(0xFF3498DB),
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                child: Text(
+                  'แบบทดสอบสภาพสมองเบื้องต้น\nMMSE-Thai 2002',
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
                   ),
-                );
-              },
-              style: ElevatedButton.styleFrom(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+                  textAlign: TextAlign.center,
+                ),
               ),
-              child: const Text(
-                'เริ่มทำแบบทดสอบ',
-                style: TextStyle(fontSize: 18),
+
+              const SizedBox(height: 15),
+
+              // รายละเอียด
+              Container(
+                padding: EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(15),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.05),
+                      spreadRadius: 1,
+                      blurRadius: 10,
+                      offset: Offset(0, 2),
+                    ),
+                  ],
+                ),
+                child: Column(
+                  children: [
+                    // ไอคอนสมอง
+                    Icon(
+                      Icons.psychology,
+                      size: 50,
+                      color: Color(0xFF2C3E50),
+                    ),
+                    SizedBox(height: 15),
+
+                    Text(
+                      'แบบทดสอบนี้ใช้เพื่อประเมินความสามารถ\nของสมองเบื้องต้น \nที่มา:คณะกรรมการจัดท่าแบบทดสอบสภาพสมองเบื้องต้นฉบับภาษาไทย สถาบันเวชศาสตร์ผู้สูงอายุ กรมการแพทย์ กระทรวงสาธารณสุข ',
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Color(0xFF2C3E50),
+                        height: 1.5,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+
+                    const SizedBox(height: 20),
+
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Divider(
+                            color: Colors.grey.withOpacity(0.5),
+                            thickness: 1,
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 15),
+                          child: Text(
+                            "คำแนะนำ",
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Colors.grey,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: Divider(
+                            color: Colors.grey.withOpacity(0.5),
+                            thickness: 1,
+                          ),
+                        ),
+                      ],
+                    ),
+
+                    const SizedBox(height: 20),
+
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Icon(
+                          Icons.check_circle,
+                          size: 20,
+                          color: Color(0xFF3498DB),
+                        ),
+                        SizedBox(width: 12),
+                        Expanded(
+                          child: Text(
+                            'โปรดตอบคำถามตามที่ปรากฏบนหน้าจอให้ครบทุกข้อ',
+                            style: TextStyle(
+                              fontSize: 15,
+                              height: 1.4,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+
+                    const SizedBox(height: 10),
+
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Icon(
+                          Icons.check_circle,
+                          size: 20,
+                          color: Color(0xFF3498DB),
+                        ),
+                        SizedBox(width: 12),
+                        Expanded(
+                          child: Text(
+                            'ใช้เวลาในการทำแบบทดสอบประมาณ 10-15 นาที',
+                            style: TextStyle(
+                              fontSize: 15,
+                              height: 1.4,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+
+                    const SizedBox(height: 10),
+
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Icon(
+                          Icons.check_circle,
+                          size: 20,
+                          color: Color(0xFF3498DB),
+                        ),
+                        SizedBox(width: 12),
+                        Expanded(
+                          child: Text(
+                            'กรุณาทำในสถานที่เงียบและมีสมาธิ',
+                            style: TextStyle(
+                              fontSize: 15,
+                              height: 1.4,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
+
+              const SizedBox(height: 30),
+
+              // ปุ่มเริ่มทำแบบทดสอบ
+              Container(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const EducationLevelScreen(),
+                      ),
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color(0xFF3498DB),
+                    foregroundColor: Colors.white,
+                    padding: const EdgeInsets.symmetric(vertical: 16),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    elevation: 3,
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        'เริ่มทำแบบทดสอบ',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+
+              const SizedBox(height: 15),
+
+              // ข้อความด้านล่าง
+              Text(
+                '* ผลการทดสอบนี้ใช้สำหรับการคัดกรองเบื้องต้นเท่านั้น ไม่สามารถใช้เพื่อการวินิจฉัยทางการแพทย์',
+                style: TextStyle(
+                  fontSize: 12,
+                  color: Colors.grey,
+                  fontStyle: FontStyle.italic,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
         ),
       ),
     );
